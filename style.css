@@ -1,7 +1,9 @@
 body {
   font-family: sans-serif;
   padding: 20px;
-  background: #f0f0f0;
+  background: var(--bg, #f0f0f0);
+  color: var(--text, #000);
+  transition: background-color 0.3s, color 0.3s;
 }
 form {
   margin-bottom: 20px;
@@ -11,13 +13,38 @@ input {
   width: 200px;
 }
 button {
-  padding: 8px;
+  padding: 6px;
+  font-size: 16px;
+  cursor: pointer;
 }
 li {
   margin: 5px 0;
 }
-button {
-  padding: 6px;
-  font-size: 16px;
-  cursor: pointer;
+
+/* Stylové menu */
+#style-menu {
+  position: absolute;
+  top: 60px;
+  left: 10px;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.hidden {
+  display: none;
+}
+
+/* Témata */
+.theme-light {
+  --bg: #ffffff;
+  --text: #000000;
+}
+.theme-dark {
+  --bg: #121212;
+  --text: #eeeeee;
+}
+.theme-retro {
+  --bg: #fdf6e3;
+  --text: #657b83;
 }

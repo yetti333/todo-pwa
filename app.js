@@ -1,3 +1,4 @@
+// IndexedDB
 const dbName = "TodoDB";
 const storeName = "tasks";
 
@@ -55,6 +56,7 @@ async function renderTasks() {
     list.appendChild(li);
   });
 }
+
 async function deleteTask(id) {
   const db = await openDB();
   const tx = db.transaction(storeName, "readwrite");
@@ -63,24 +65,45 @@ async function deleteTask(id) {
   tx.oncomplete = () => renderTasks();
 }
 
-document.getElementById("task-form").addEventListener("submit", e => {
-  e.preventDefault();
-  const input = document.getElementById("task-input");
-  addTask(input.value);
-  input.value = "";
-});
+// Stylové menu
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.getElementById("style-toggle");
+  const menu = document.getElementById("style-menu");
 
-window.addEventListener("load", () => {
-  renderTasks();
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("service-worker.js");
+  toggleBtn.addEventListener("click", () => {
+    menu.classList.toggle("hidden");
+  });
+
+  menu.addEventListener("click", (e) => {
+    const style = e.target.dataset.style;
+    if (style) {
+      document.body.className = "";
+      document.body.classList.add(`theme-${style}`);
+      localStorage.setItem("appStyle", style);
+      menu.classList.add("hidden");
+    }
+  });
+
+  const savedStyle = localStorage.getItem("appStyle");
+  if (savedStyle) {
+    document.body.classList.add(`theme-${savedStyle}`);
   }
-});
 
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/service-worker.js")
+  // Formulář
+  document.getElementById("task-form").addEventListener("submit", e => {
+    e.preventDefault();
+    const input = document.getElementById("task-input");
+    addTask(input.value);
+    input.value = "";
+  });
+
+  // Úkoly
+  renderTasks();
+
+  // Service Worker
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js")
       .then(reg => console.log("Service Worker registered", reg))
       .catch(err => console.error("Service Worker registration failed", err));
-  });
-}
+  }
+});
