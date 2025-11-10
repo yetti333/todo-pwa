@@ -102,12 +102,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // FAB
   const fab = document.getElementById("fab");
-  const fabMenu = document.getElementById("fab-menu");
-  if (fab && fabMenu) {
-    fab.addEventListener("click", () => {
-      fabMenu.classList.toggle("hidden");
-    });
-  }
+const fabMenu = document.getElementById("fab-menu");
+const fabOverlay = document.getElementById("fab-overlay");
+
+function toggleFabMenu() {
+  fabMenu.classList.toggle("visible");
+  fabOverlay.classList.toggle("visible");
+}
+
+fab.addEventListener("click", toggleFabMenu);
+fabOverlay.addEventListener("click", toggleFabMenu);
 
   // Styl při načtení
   const savedStyle = localStorage.getItem("appStyle");

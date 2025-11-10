@@ -62,23 +62,80 @@ li {
 }
 
 /* FAB */
+/* FAB tlačítko */
 #fab {
   position: fixed;
-  bottom: 80px;
+  bottom: 20px;
   right: 20px;
   font-size: 24px;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 56px;
+  height: 56px;
+  background-color: #0078d4;
+  color: white;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 1001;
+  transition: background-color 0.3s ease;
 }
+#fab:hover {
+  background-color: #005fa3;
+}
+
+/* FAB menu */
 .fab-menu {
   position: fixed;
-  bottom: 80px;
-  right: 80px;
+  bottom: 90px;
+  right: 20px;
   background: #fff;
   border: 1px solid #ccc;
+  border-radius: 8px;
   padding: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  z-index: 1002;
+}
+.fab-menu.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Overlay pozadí */
+#fab-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+#fab-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Tlačítka v menu */
+.fab-menu button {
+  display: block;
+  width: 100%;
+  margin: 5px 0;
+  padding: 8px;
+  font-size: 14px;
+  background: #f0f0f0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+.fab-menu button:hover {
+  background: #e0e0e0;
 }
 
 /* Bottom nav */
