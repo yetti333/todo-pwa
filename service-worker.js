@@ -1,45 +1,55 @@
-const CACHE_NAME = "todo-cache-v1";
-const urlsToCache = [
+const CACHE_NAME = "todo-pwa-v1";
+const FILES_TO_CACHE = [
   "/",
   "/index.html",
-  "/app.js",
   "/style.css",
+  "/app.js",
   "/manifest.json",
-  "/icon-100.png",
-  "/icon-375.png"
+  "/icons/icon-100.png", // pokud máš ikony
+  "/icons/icon-375.png"
 ];
 
-// Instalace: uložení souborů do cache
+// Instalace: cache souborů
 self.addEventListener("install", event => {
+  self.skipWaiting(); // okamžitá aktivace
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(urlsToCache);
+      return cache.addAll(FILES_TO_CACHE);
     })
   );
 });
 
-// Aktivace: odstranění starých verzí cache
+// Aktivace: vyčištění starých cache
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys =>
       Promise.all(
-        keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))
+        keys.map(key => {
+          if (key !== CACHE_NAME) {
+            return caches.delete(key);
+          }
+        })
       )
     )
   );
+  self.clients.claim(); // převezme kontrolu nad stránkou
 });
 
-// Fetch: obsluha požadavků – nejdřív cache, pak síť
+// Fetch: obsluha požadavků
 self.addEventListener("fetch", event => {
-  console.log("Fetching:", event.request.url);
+  if (event.request.method !== "GET") return;
+
   event.respondWith(
-    caches.match(event.request).then(response => {
-      if (response) {
-        console.log("Serving from cache:", event.request.url);
-        return response;
-      }
-      console.log("Fetching from network:", event.request.url);
-      return fetch(event.request);
+    caches.match(event.request).then(cached => {
+      return (
+        cached ||
+        fetch(event.request).catch(() => {
+          // fallback pro offline navigaci
+          if (event.request.mode === "navigate") {
+            return caches.match("/index.html");
+          }
+        })
+      );
     })
   );
 });
