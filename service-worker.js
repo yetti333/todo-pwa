@@ -5,8 +5,8 @@ const FILES_TO_CACHE = [
   "/style.css",
   "/app.js",
   "/manifest.json",
-  "/icons/icon-100.png", // pokud máš ikony
-  "/icons/icon-375.png"
+  "/icon-100.png", // pokud máš ikony
+  "/icon-375.png"
 ];
 
 // Instalace: cache souborů

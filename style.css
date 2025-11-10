@@ -61,11 +61,10 @@ li {
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-/* FAB */
 /* FAB tlačítko */
 #fab {
   position: fixed;
-  bottom: 20px;
+  bottom: 80px;
   right: 20px;
   font-size: 24px;
   border-radius: 50%;
@@ -85,7 +84,7 @@ li {
 /* FAB menu */
 .fab-menu {
   position: fixed;
-  bottom: 90px;
+  bottom: 0px;
   right: 20px;
   background: #fff;
   border: 1px solid #ccc;
