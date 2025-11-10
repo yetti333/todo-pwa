@@ -1,7 +1,8 @@
+/* Základní styl */
 body {
   font-family: sans-serif;
   padding: 20px;
-  background: var(--bg, #f0f0f0);
+  background-color: var(--bg, #f0f0f0);
   color: var(--text, #000);
   transition: background-color 0.3s, color 0.3s;
 }
@@ -21,6 +22,20 @@ li {
   margin: 5px 0;
 }
 
+/* Stylové motivy */
+.theme-light {
+  --bg: #ffffff;
+  --text: #000000;
+}
+.theme-dark {
+  --bg: #121212;
+  --text: #eeeeee;
+}
+.theme-retro {
+  --bg: #fdf6e3;
+  --text: #657b83;
+}
+
 /* Stylové menu */
 #style-menu {
   position: absolute;
@@ -35,35 +50,46 @@ li {
   display: none;
 }
 
-/* dropdown menu */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
+/* Dropdown */
 .dropdown-content {
   position: absolute;
-  top: 100%;
+  top: 80%;
   left: 0;
   background: #fff;
   border: 1px solid #ccc;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   padding: 10px;
-}
-.hidden {
-  display: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-/* Témata */
-.theme-light {
-  --bg: #ffffff;
-  --text: #000000;
+/* FAB */
+#fab {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  font-size: 24px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
 }
-.theme-dark {
-  --bg: #121212;
-  --text: #eeeeee;
-}
-.theme-retro {
-  --bg: #fdf6e3;
-  --text: #657b83;
+.fab-menu {
+  position: fixed;
+  bottom: 80px;
+  right: 80px;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
+/* Bottom nav */
+#bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #ddd;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+}
