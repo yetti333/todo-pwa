@@ -35,6 +35,24 @@ li {
   display: none;
 }
 
+/* dropdown menu */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  padding: 10px;
+}
+.hidden {
+  display: none;
+}
+
 /* Témata */
 .theme-light {
   --bg: #ffffff;
@@ -48,3 +66,4 @@ li {
   --bg: #fdf6e3;
   --text: #657b83;
 }
+

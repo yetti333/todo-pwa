@@ -84,6 +84,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  document.getElementById("dropdown-toggle").addEventListener("click", () => {
+  document.getElementById("dropdown-menu").classList.toggle("hidden");
+});
+
   const savedStyle = localStorage.getItem("appStyle");
   if (savedStyle) {
     document.body.classList.add(`theme-${savedStyle}`);
